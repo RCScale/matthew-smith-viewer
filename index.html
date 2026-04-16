@@ -35187,7 +35187,10 @@ renderers.messaging=function(){
       const d=fmtDate(ms);
       if(d!==lastDate){mh+='<div class="msg-date-sep">'+d+'</div>';lastDate=d;}
       const isSent=m.sender_id==='p_matthew';
+      const senderName=(m.sender_id||'').replace(/^p_/,'').replace(/^\w/,c=>c.toUpperCase());
+      const isGroup=(c.participant_ids||c.messages.map(x=>x.sender_id).filter((v,i,a)=>a.indexOf(v)===i)).length>2;
       mh+='<div class="msg-bubble '+(isSent?'sent':'received')+'">';
+      if(!isSent&&isGroup)mh+='<div style="font-size:10px;font-weight:600;color:var(--accent);margin-bottom:2px">'+esc(senderName)+'</div>';
       mh+=esc(m.content||'');
       mh+='<div class="msg-time">'+fmtTime(ms)+'</div></div>';
     });

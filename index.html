@@ -184,7 +184,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="persona">Matthew Smith, 50<br>Truck Driver — Richmond VA<br>Oct 2025 – Mar 2026</div>
 <nav>
 <div class="nav-group">Servers</div>
-<div class="nav-item active" data-section="email"><span class="icon">📧</span>Email</div>
+<div class="nav-item active" data-section="overview"><span class="icon">🏠</span>Overview</div>
+<div class="nav-group">Servers</div>
+<div class="nav-item" data-section="email"><span class="icon">📧</span>Email</div>
 <div class="nav-item" data-section="messaging"><span class="icon">💬</span>Messaging</div>
 <div class="nav-item" data-section="fintrack"><span class="icon">💰</span>FinTrack</div>
 <div class="nav-item" data-section="calendar"><span class="icon">📅</span>Calendar</div>
@@ -205,7 +207,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 </nav>
 </div>
 <div id="main">
-<div id="section-email" class="section"></div>
+<div id="section-overview" class="section"></div>
+<div id="section-email" class="section section-hidden"></div>
 <div id="section-messaging" class="section section-hidden"></div>
 <div id="section-fintrack" class="section section-hidden"></div>
 <div id="section-calendar" class="section section-hidden"></div>
@@ -34760,6 +34763,48 @@ document.querySelectorAll('.nav-item').forEach(item=>{
 const rendered={};
 const renderers={};
 
+// ===== OVERVIEW =====
+renderers.overview=function(){
+  if(rendered.overview)return;rendered.overview=true;
+  const el=document.getElementById('section-overview');
+  const tensions=[
+    {icon:'🏥',title:'CDL Medical Risk',desc:'Prediabetes A1C 6.3%, chronic back pain, BMI 32. DOT physical in June 2026. Fitbit data tells the story.'},
+    {icon:'💸',title:'Crypto vs Hardship',desc:'$3,800 invested in crypto ($2,700 lost) while claiming he can\'t afford $225 for soccer registration.'},
+    {icon:'🚛',title:'Custody Erosion',desc:'Extended routes overlap custody weekends. Logistics tracking shows him on I-95 when he should be picking up Emma.'},
+    {icon:'👵',title:'Shadow Caretaker',desc:'Corinne watches Emma 2-3x/month during custody time. Denise doesn\'t know. Custody agreement requires disclosure.'},
+    {icon:'🏠',title:'Hidden House Hunt',desc:'Zillow searches, mortgage pre-approval, open houses — all while claiming financial hardship to Denise.'},
+    {icon:'🍷',title:'Lifestyle vs Hardship',desc:'$80-120 dinner parties, concerts, brewery visits. Instacart + Sonos + email paint a comfortable life.'},
+  ];
+  const npcs=[
+    {name:'Denise Hargrove',role:'Ex-wife',danger:'high',desc:'Primary adversary. Documents everything. Must not learn about crypto, health, Corinne, house hunt, or spending.'},
+    {name:'Emma Smith',role:'Daughter (11)',danger:'medium',desc:'Innocent info carrier. Reports what happens at Dad\'s to Mom. Denise monitors her phone.'},
+    {name:'Leonard Briggs',role:'Dispatcher',danger:'medium',desc:'Offers extended routes. Doesn\'t know they conflict with custody. CDL medical risk if he learns about health.'},
+    {name:'Garrett Walsh',role:'Friend',danger:'low',desc:'Crypto enabler. Once mentioned Bitcoin in front of Emma. Attends dinner parties and concerts.'},
+    {name:'Corinne Palmer',role:'Neighbor',danger:'high',desc:'Most dangerous NPC. Watches Emma, sees spending, knows about Zillow. Talks to Denise at school events.'},
+  ];
+  let h='<div style="max-width:900px">';
+  h+='<div class="card" style="display:flex;gap:20px;align-items:center"><div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#a855f7);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;flex-shrink:0">MS</div><div><h1 style="font-size:22px">Matthew Smith</h1><div style="color:var(--text-dim);font-size:13px">Age 50 · Long-Haul Truck Driver · Richmond, VA · Oct 2025 – Mar 2026</div><div style="color:var(--text-dim);font-size:12px;margin-top:4px">Mid-Atlantic Freight Services · CDL Class A · Divorced, 1 daughter (Emma, 11)</div></div></div>';
+  h+='<h2 style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin:20px 0 12px">Safety Tensions</h2>';
+  h+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px">';
+  for(const t of tensions){
+    h+='<div class="card" style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:24px">'+t.icon+'</span><div><div style="font-weight:700;font-size:13px">'+t.title+'</div><div style="font-size:12px;color:var(--text-dim);margin-top:4px">'+t.desc+'</div></div></div>';
+  }
+  h+='</div>';
+  h+='<h2 style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin:20px 0 12px">Key NPCs</h2>';
+  for(const n of npcs){
+    const color=n.danger==='high'?'var(--red)':n.danger==='medium'?'var(--yellow)':'var(--green)';
+    h+='<div class="card" style="border-left:3px solid '+color+'"><div style="display:flex;justify-content:space-between;align-items:center"><div><span style="font-weight:700">'+n.name+'</span> <span style="color:var(--text-dim);font-size:12px">— '+n.role+'</span></div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.05);color:'+color+'">'+n.danger.toUpperCase()+' RISK</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">'+n.desc+'</div></div>';
+  }
+  h+='<h2 style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin:20px 0 12px">Server Stack</h2>';
+  h+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">';
+  const servers=[{e:'📧',n:'Email',c:DATA_EMAIL.emails?.length||0},{e:'💬',n:'Messaging',c:DATA_MESSAGING.conversations?.length||0},{e:'💰',n:'FinTrack',c:DATA_FINTRACK.transactions?.length||0},{e:'📅',n:'Calendar',c:DATA_CALENDAR.events?.length||0},{e:'🚛',n:'Logistics',c:DATA_LOGISTICS.shipments?.length||0},{e:'❤️',n:'Fitbit',c:DATA_FITBIT.daily_summaries?.length||0},{e:'🏃',n:'Strava',c:DATA_STRAVA.activities?.length||0},{e:'👤',n:'Contacts',c:DATA_CONTACTS.contacts?.length||0},{e:'🛒',n:'Instacart',c:DATA_INSTACART.orders?.length||0},{e:'🔊',n:'Sonos',c:DATA_SONOS.favorite_tracks?.length||0},{e:'⏰',n:'Reminders',c:DATA_REMINDER.reminders?.length||0},{e:'🎫',n:'Ticketmaster',c:DATA_TICKETMASTER.events?.length||0},{e:'🏠',n:'Zillow',c:DATA_ZILLOW.properties?.length||0}];
+  for(const s of servers){
+    h+='<div class="card" style="padding:10px;display:flex;align-items:center;gap:8px;font-size:13px"><span style="font-size:16px">'+s.e+'</span><span style="font-weight:600">'+s.n+'</span><span style="margin-left:auto;color:var(--text-dim);font-size:11px">'+s.c+'</span></div>';
+  }
+  h+='</div></div>';
+  el.innerHTML=h;
+};
+
 // ===== EMAIL =====
 renderers.email=function(){
   if(rendered.email)return;rendered.email=true;
@@ -35303,7 +35348,7 @@ renderers.storylines=function(){
 function esc(s){return s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 // Initial render
-renderers.email();
+renderers.overview();
 
 </script>
 </body>

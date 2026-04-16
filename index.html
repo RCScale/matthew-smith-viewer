@@ -34787,7 +34787,7 @@ renderers.email=function(){
       const ms=tsToMs(e.timestamp);
       const from=e.sender||'';
       const preview=(e.content||'').substring(0,120).replace(/\n/g,' ');
-      h+='<div class="email-item" onclick="this.classList.toggle('open')" data-search="'+(e.subject+' '+e.sender+' '+(e.content||'')).toLowerCase().replace(/"/g,"&quot;").substring(0,500)+'">';
+      h+='<div class="email-item" onclick="this.classList.toggle(\x27open\x27)" data-search="'+(e.subject+' '+e.sender+' '+(e.content||'')).toLowerCase().replace(/"/g,"&quot;").substring(0,500)+'">';
       h+='<div class="email-meta"><span class="email-from">'+esc(from)+'</span><span class="email-date">'+fmtDateTime(ms)+'</span></div>';
       h+='<div class="email-subj">'+esc(e.subject||'(no subject)')+'</div>';
       h+='<div class="email-preview">'+esc(preview)+'</div>';
@@ -34978,7 +34978,7 @@ renderers.logistics=function(){
     const o=p.outbound;const r=p.returnLeg;
     const dest=o.destination.split(',')[0];
     const statusClass=(o.status||'').replace(/ /g,'_');
-    h+='<div class="route-card" onclick="event.target.closest('.route-timeline')?null:this.classList.toggle('open')">';
+    h+='<div class="route-card" onclick="event.target.closest(\x27.route-timeline\x27)?null:this.classList.toggle(\x27open\x27)">';
     h+='<div class="route-header"><div class="route-title">'+esc(dest)+'</div>';
     h+='<div class="route-status '+statusClass+'">'+esc(o.status)+'</div></div>';
     h+='<div class="route-details">';

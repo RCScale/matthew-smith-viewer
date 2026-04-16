@@ -35066,14 +35066,14 @@ renderers.logistics=function(){
 renderers.fitbit=function(){
   if(rendered.fitbit)return;rendered.fitbit=true;
   const el=document.getElementById('section-fitbit');
-  const daily=(DATA_FITBIT.daily_activity_summary||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
-  const sleep=(DATA_FITBIT.sleep_logs||[]).slice().sort((a,b)=>new Date(b.date_of_sleep||b.dateOfSleep)-new Date(a.date_of_sleep||a.dateOfSleep));
+  const daily=(DATA_FITBIT.daily_summaries||DATA_FITBIT.daily_activity_summary||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const sleep=(DATA_FITBIT.sleep_logs||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
   const food=DATA_FITBIT.food_logs||[];
   const totalSteps=daily.reduce((s,d)=>s+(d.steps||0),0);
   const avgSteps=daily.length?Math.round(totalSteps/daily.length):0;
-  const hrData=daily.filter(d=>d.resting_heart_rate||d.restingHeartRate);
-  const avgHR=hrData.length?Math.round(hrData.reduce((s,d)=>s+(d.resting_heart_rate||d.restingHeartRate||0),0)/hrData.length):0;
-  const avgSleep=sleep.length?(sleep.reduce((s,d)=>s+(d.duration||0),0)/sleep.length/3600000).toFixed(1):0;
+  const hrData=daily.filter(d=>d.resting_heart_rate);
+  const avgHR=hrData.length?Math.round(hrData.reduce((s,d)=>s+(d.resting_heart_rate||0),0)/hrData.length):0;
+  const avgSleep=sleep.length?(sleep.reduce((s,d)=>s+(d.minutes_asleep||d.duration||0),0)/sleep.length/60).toFixed(1):0;
   let h='<h1>Fitbit</h1><p class="subtitle">'+daily.length+' days tracked</p>';
   h+='<div class="fitbit-grid">';
   h+='<div class="fitbit-stat"><div class="fs-label">Avg Steps</div><div class="fs-val">'+avgSteps.toLocaleString()+'</div><div class="fs-sub">per day</div></div>';
@@ -35090,10 +35090,10 @@ renderers.fitbit=function(){
   h+='<h2 style="font-size:16px;margin:16px 0 8px">Daily Activity</h2>';
   h+='<div id="fitbit-daily">';
   daily.slice(0,PAGE_SIZE).forEach(d=>{
-    const hr=d.resting_heart_rate||d.restingHeartRate||'—';
-    const cal=d.calories_out||d.caloriesOut||'—';
-    const sleepD=sleep.find(s=>(s.date_of_sleep||s.dateOfSleep)===d.date);
-    const sleepHrs=sleepD?((sleepD.duration||0)/3600000).toFixed(1):'—';
+    const hr=d.resting_heart_rate||'—';
+    const cal=d.calories_total||'—';
+    const sleepD=sleep.find(s=>s.date===d.date);
+    const sleepHrs=sleepD?((sleepD.minutes_asleep||0)/60).toFixed(1):'—';
     const score=sleepD?(sleepD.efficiency||'—'):'—';
     h+='<div class="fitbit-day"><div class="fd-date">'+d.date+'</div>';
     h+='<div class="fd-row"><span>🚶 '+(d.steps||0).toLocaleString()+' steps</span>';

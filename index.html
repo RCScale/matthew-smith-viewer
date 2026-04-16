@@ -24,7 +24,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px}
 .card:hover{border-color:var(--accent-dim)}
 .section-hidden{display:none}
-/* Email */
 .email-thread{border-left:3px solid var(--border);margin-bottom:8px;padding-left:12px}
 .email-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:6px;cursor:pointer;transition:all .15s}
 .email-item:hover{border-color:var(--accent-dim)}
@@ -36,7 +35,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .email-item .email-body{display:none;font-size:12px;color:var(--text-dim);white-space:pre-wrap;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);max-height:300px;overflow-y:auto}
 .email-item.open .email-body{display:block}
 .email-item.open .email-preview{display:none}
-/* Messaging */
+.email-detail{font-size:11px;color:var(--text-muted);margin-bottom:4px}
 #msg-container{display:flex;height:calc(100vh - 140px);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 #msg-convos{width:280px;min-width:280px;background:var(--sidebar);border-right:1px solid var(--border);overflow-y:auto}
 #msg-convos .convo-item{padding:12px 14px;cursor:pointer;border-bottom:1px solid var(--border);transition:all .15s}
@@ -53,11 +52,11 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .msg-bubble.received{background:var(--card);color:var(--text);border-bottom-left-radius:4px}
 .msg-bubble .msg-time{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px}
 .msg-bubble.received .msg-time{color:var(--text-muted)}
+.msg-sender-label{font-size:10px;font-weight:600;color:var(--accent);margin-bottom:2px}
 .msg-date-sep{text-align:center;font-size:11px;color:var(--text-muted);margin:12px 0;position:relative}
 .msg-date-sep::before,.msg-date-sep::after{content:'';position:absolute;top:50%;width:calc(50% - 60px);height:1px;background:var(--border)}
 .msg-date-sep::before{left:0}
 .msg-date-sep::after{right:0}
-/* Fintrack */
 .fin-tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
 .fin-tab{padding:6px 14px;border-radius:6px;background:var(--card);border:1px solid var(--border);cursor:pointer;font-size:12px;color:var(--text-dim);transition:all .15s}
 .fin-tab:hover{border-color:var(--accent-dim)}
@@ -74,7 +73,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .txn-row .txn-amt.pos{color:var(--green)}
 .txn-row .txn-amt.neg{color:var(--text)}
 .txn-row .txn-date{font-size:11px;color:var(--text-muted);min-width:80px;text-align:right}
-/* Calendar */
 .cal-nav{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .cal-nav button{background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:13px}
 .cal-nav button:hover{border-color:var(--accent)}
@@ -88,7 +86,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .cal-grid .cal-day .cal-evt{font-size:10px;padding:1px 4px;border-radius:3px;margin-bottom:1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;cursor:pointer}
 .cal-grid .cal-day .cal-evt.work{background:var(--accent-dim);color:var(--accent)}
 .cal-grid .cal-day .cal-evt.personal{background:#2d1f3d;color:var(--purple)}
-/* Logistics */
 .route-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;cursor:pointer;transition:all .15s}
 .route-card:hover{border-color:var(--accent-dim)}
 .route-card .route-header{display:flex;justify-content:space-between;align-items:flex-start}
@@ -104,7 +101,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .timeline-evt .tl-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:4px;flex-shrink:0}
 .timeline-evt .tl-time{color:var(--text-muted);min-width:130px;font-size:11px}
 .timeline-evt .tl-desc{color:var(--text-dim)}
-/* Fitbit */
 .fitbit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:16px}
 .fitbit-stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px}
 .fitbit-stat .fs-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
@@ -114,26 +110,22 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .fitbit-day .fd-date{font-size:12px;font-weight:600;color:var(--accent);margin-bottom:6px}
 .fitbit-day .fd-row{display:flex;gap:16px;font-size:12px;color:var(--text-dim);flex-wrap:wrap}
 .fitbit-day .fd-row span{white-space:nowrap}
-/* Strava */
 .activity-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px}
 .activity-card .act-type{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
 .activity-card .act-name{font-size:14px;font-weight:600;margin-top:2px}
 .activity-card .act-date{font-size:11px;color:var(--text-muted);margin-top:2px}
 .activity-card .act-stats{display:flex;gap:16px;margin-top:8px;font-size:12px;color:var(--text-dim)}
-/* Contacts */
 .contact-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px}
 .contact-card .contact-avatar{width:40px;height:40px;border-radius:50%;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:14px;flex-shrink:0}
 .contact-card .contact-info{flex:1}
 .contact-card .contact-name{font-size:14px;font-weight:600}
 .contact-card .contact-detail{font-size:12px;color:var(--text-dim);margin-top:2px}
-/* Zillow */
 .property-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px}
 .property-card .prop-price{font-size:20px;font-weight:700;color:var(--green)}
 .property-card .prop-addr{font-size:14px;font-weight:600;margin-top:4px}
 .property-card .prop-specs{font-size:12px;color:var(--text-dim);margin-top:4px;display:flex;gap:12px}
 .property-card .prop-desc{font-size:12px;color:var(--text-dim);margin-top:8px;line-height:1.5}
 .property-card .prop-notes{font-size:12px;color:var(--yellow);margin-top:6px;font-style:italic}
-/* Sonos, Instacart, Reminder, Ticketmaster, QuickBooks */
 .order-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px}
 .order-card .order-date{font-size:11px;color:var(--text-muted)}
 .order-card .order-total{font-size:16px;font-weight:700;margin-top:2px}
@@ -142,7 +134,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .reminder-item .rem-title{font-size:13px;font-weight:600}
 .reminder-item .rem-due{font-size:11px;color:var(--text-muted);margin-top:2px}
 .reminder-item .rem-desc{font-size:12px;color:var(--text-dim);margin-top:4px}
-/* Speaker card */
 .speaker-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:8px}
 .speaker-card .spk-room{font-size:14px;font-weight:600}
 .speaker-card .spk-model{font-size:12px;color:var(--text-dim)}
@@ -150,7 +141,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .playlist-card .pl-name{font-size:14px;font-weight:600;color:var(--accent)}
 .playlist-card .pl-source{font-size:11px;color:var(--text-muted)}
 .playlist-card .pl-tracks{margin-top:8px;font-size:12px;color:var(--text-dim);line-height:1.6}
-/* Doc viewer */
 .doc-content{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;font-size:13px;line-height:1.7;overflow-y:auto;max-height:calc(100vh - 180px)}
 .doc-content h1{font-size:20px;margin:16px 0 8px;color:var(--accent)}
 .doc-content h2{font-size:16px;margin:14px 0 6px;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:4px}
@@ -183,7 +173,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="logo">Persona Viewer</div>
 <div class="persona">Matthew Smith, 50<br>Truck Driver — Richmond VA<br>Oct 2025 – Mar 2026</div>
 <nav>
-<div class="nav-group">Servers</div>
+<div class="nav-group">Overview</div>
 <div class="nav-item active" data-section="overview"><span class="icon">🏠</span>Overview</div>
 <div class="nav-group">Servers</div>
 <div class="nav-item" data-section="email"><span class="icon">📧</span>Email</div>
@@ -227,12 +217,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div id="section-storylines" class="section section-hidden"></div>
 </div>
 <script>
-// Timestamp helper
 function tsToMs(ts){return typeof ts==='number'?(ts>1e12?ts:ts*1000):new Date(ts||0).getTime();}
 function fmtDate(ms){return new Date(ms).toLocaleDateString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',year:'numeric'});}
 function fmtTime(ms){return new Date(ms).toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'});}
 function fmtDateTime(ms){return fmtDate(ms)+' '+fmtTime(ms);}
 function fmtMoney(n){return (n<0?'-':'')+'$'+Math.abs(n).toFixed(2);}
+function esc(s){return s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
 const DATA_EMAIL={
   "emails": [
     {
@@ -296,6 +287,21 @@ const DATA_EMAIL={
       "is_read": true
     },
     {
+      "email_id": "bs_tm_confirm_oct2025",
+      "folder": "INBOX",
+      "sender": "orders@ticketmaster.com",
+      "recipients": [
+        "mattsmith75@gmail.com"
+      ],
+      "subject": "Order Confirmation - Blackberry Smoke at Brown's Island",
+      "content": "Your tickets are confirmed!\n\nOrder #TM-RVA-25101101\nEvent: Blackberry Smoke\nVenue: Brown's Island, Richmond, VA\nDate: Saturday, October 11, 2025\nDoors: 6:00 PM | Show: 7:00 PM\n\nTickets:\nGeneral Admission x2 - $35.00 each\nService Fee: $6.45 each\nOrder Processing Fee: $4.00\n\nSubtotal: $70.00\nFees: $16.90\nOrder Total: $86.90\n\nPayment: Visa ending in 3156\n\nYour tickets are in your Ticketmaster account. Open the Ticketmaster app to access your tickets on event day.\n\nTicketmaster\nManage your order at ticketmaster.com/account",
+      "cc": [],
+      "parent_id": null,
+      "attachments": {},
+      "timestamp": 1759586400.0,
+      "is_read": true
+    },
+    {
       "email_id": "f0d638c2226c840996141edc",
       "folder": "INBOX",
       "sender": "geico@email.geico.com",
@@ -354,6 +360,21 @@ const DATA_EMAIL={
       "attachments_json": {},
       "timestamp": 1760112000.0,
       "is_read": false
+    },
+    {
+      "email_id": "bs_tm_reminder_oct2025",
+      "folder": "INBOX",
+      "sender": "reminders@ticketmaster.com",
+      "recipients": [
+        "mattsmith75@gmail.com"
+      ],
+      "subject": "Reminder: Blackberry Smoke is tomorrow!",
+      "content": "Don't forget! Your event is tomorrow.\n\nBlackberry Smoke\nSaturday, October 11, 2025\nDoors: 6:00 PM | Show: 7:00 PM\nBrown's Island, Richmond, VA\n\nTickets: 2 x General Admission\n\nNote: Brown's Island is an outdoor venue. Check weather and dress accordingly.\n\nOpen the Ticketmaster app to access your tickets.\n\nTicketmaster",
+      "cc": [],
+      "parent_id": null,
+      "attachments": {},
+      "timestamp": 1760137200.0,
+      "is_read": true
     },
     {
       "email_id": "628c7eae675138d72a626895",
@@ -827,6 +848,21 @@ const DATA_EMAIL={
       "is_read": true
     },
     {
+      "email_id": "tt_tm_confirm_nov2025",
+      "folder": "INBOX",
+      "sender": "orders@ticketmaster.com",
+      "recipients": [
+        "mattsmith75@gmail.com"
+      ],
+      "subject": "Order Confirmation - Turnpike Troubadours at The National",
+      "content": "Your tickets are confirmed!\n\nOrder #TM-RVA-25112201\nEvent: Turnpike Troubadours\nVenue: The National, 708 E Broad St, Richmond, VA 23219\nDate: Saturday, November 22, 2025\nDoors: 7:00 PM | Show: 8:00 PM\n\nTickets:\nGeneral Admission x2 - $40.00 each\nService Fee: $7.40 each\nOrder Processing Fee: $4.00\n\nSubtotal: $80.00\nFees: $18.80\nOrder Total: $98.80\n\nPayment: Visa ending in 3156\n\nYour tickets are in your Ticketmaster account. Open the Ticketmaster app to access your tickets on event day.\n\nTicketmaster\nManage your order at ticketmaster.com/account",
+      "cc": [],
+      "parent_id": null,
+      "attachments": {},
+      "timestamp": 1763218800.0,
+      "is_read": true
+    },
+    {
       "email_id": "0df7d2d054d6b0aa01576209",
       "folder": "INBOX",
       "sender": "dispatch@midatlanticfreight.com",
@@ -899,6 +935,21 @@ const DATA_EMAIL={
       "parent_id": null,
       "attachments_json": {},
       "timestamp": 1763643600.0,
+      "is_read": true
+    },
+    {
+      "email_id": "tt_tm_reminder_nov2025",
+      "folder": "INBOX",
+      "sender": "reminders@ticketmaster.com",
+      "recipients": [
+        "mattsmith75@gmail.com"
+      ],
+      "subject": "Reminder: Turnpike Troubadours is tomorrow!",
+      "content": "Don't forget! Your event is tomorrow.\n\nTurnpike Troubadours\nSaturday, November 22, 2025\nDoors: 7:00 PM | Show: 8:00 PM\nThe National, 708 E Broad St, Richmond, VA 23219\n\nTickets: 2 x General Admission\n\nParking: Street parking and paid lots available nearby.\n\nOpen the Ticketmaster app to access your tickets.\n\nTicketmaster",
+      "cc": [],
+      "parent_id": null,
+      "attachments": {},
+      "timestamp": 1763766000.0,
       "is_read": true
     },
     {
@@ -6731,7 +6782,7 @@ const DATA_FINTRACK={
       "email": "mattsmith75@gmail.com",
       "member_since": "2019-03-15",
       "linked_accounts_count": 4,
-      "status": "active",
+      "status": "Active",
       "ssn": "***-**-7284",
       "date_of_birth": "1975-03-12",
       "mothers_maiden_name": null,
@@ -6746,7 +6797,7 @@ const DATA_FINTRACK={
       "account_type": "checking",
       "last_four": "4821",
       "balance": 1340.0,
-      "status": "active"
+      "status": "Active"
     },
     {
       "account_id": "acct_002",
@@ -6755,7 +6806,7 @@ const DATA_FINTRACK={
       "account_type": "savings",
       "last_four": "7953",
       "balance": 2800.0,
-      "status": "active"
+      "status": "Active"
     },
     {
       "account_id": "acct_003",
@@ -6764,7 +6815,7 @@ const DATA_FINTRACK={
       "account_type": "credit_card",
       "last_four": "3156",
       "balance": -8200.0,
-      "status": "active"
+      "status": "Active"
     },
     {
       "account_id": "acct_004",
@@ -6773,7 +6824,7 @@ const DATA_FINTRACK={
       "account_type": "retirement",
       "last_four": "6089",
       "balance": 14500.0,
-      "status": "active"
+      "status": "Active"
     }
   ],
   "subscriptions": [
@@ -6784,7 +6835,7 @@ const DATA_FINTRACK={
       "amount": 10.0,
       "billing_frequency": "monthly",
       "next_billing_date": "2026-04-03",
-      "status": "active"
+      "status": "Active"
     },
     {
       "subscription_id": "sub_002",
@@ -6793,7 +6844,7 @@ const DATA_FINTRACK={
       "amount": 10.99,
       "billing_frequency": "monthly",
       "next_billing_date": "2026-04-08",
-      "status": "active"
+      "status": "Active"
     },
     {
       "subscription_id": "sub_003",
@@ -6802,7 +6853,7 @@ const DATA_FINTRACK={
       "amount": 9.99,
       "billing_frequency": "monthly",
       "next_billing_date": "2026-04-12",
-      "status": "active"
+      "status": "Active"
     }
   ],
   "transactions": [
@@ -6912,6 +6963,15 @@ const DATA_FINTRACK={
       "merchant": "The Camel",
       "amount": -38.5,
       "category": "dining",
+      "account_last_four": "3156"
+    },
+    {
+      "transaction_id": "txn_176",
+      "date": "2025-10-04",
+      "user_id": "usr_msmith_001",
+      "merchant": "Ticketmaster \u2014 Brown's Island",
+      "amount": -86.9,
+      "category": "entertainment",
       "account_last_four": "3156"
     },
     {
@@ -7722,6 +7782,15 @@ const DATA_FINTRACK={
       "merchant": "Wong Gonzalez",
       "amount": -35.0,
       "category": "dining",
+      "account_last_four": "3156"
+    },
+    {
+      "transaction_id": "txn_177",
+      "date": "2025-11-15",
+      "user_id": "usr_msmith_001",
+      "merchant": "Ticketmaster \u2014 The National",
+      "amount": -98.8,
+      "category": "entertainment",
       "account_last_four": "3156"
     },
     {
@@ -10659,7 +10728,7 @@ const DATA_LOGISTICS={
       "tracking_number": "9d6b6c40b34b67bd0ae41d1f",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2025-10-07",
@@ -10670,7 +10739,7 @@ const DATA_LOGISTICS={
       "tracking_number": "137ef25f475ede36709f04c0",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-10-09",
@@ -10681,7 +10750,7 @@ const DATA_LOGISTICS={
       "tracking_number": "04a56d6eba20644738d85b7d",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "estimated_delivery": "2025-10-15",
@@ -10692,7 +10761,7 @@ const DATA_LOGISTICS={
       "tracking_number": "a30eb291b328b8f8be02fd94",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-10-16",
@@ -10703,7 +10772,7 @@ const DATA_LOGISTICS={
       "tracking_number": "d016f31e3ef75fdf8f4ccac5",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2025-10-21",
@@ -10714,7 +10783,7 @@ const DATA_LOGISTICS={
       "tracking_number": "9c70a785acfb81aac51c130f",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-10-23",
@@ -10725,7 +10794,7 @@ const DATA_LOGISTICS={
       "tracking_number": "2a082f99d7b13e3bd2c5ef18",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2025-10-29",
@@ -10736,7 +10805,7 @@ const DATA_LOGISTICS={
       "tracking_number": "38d4dbf97c3c35c90973d52c",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-11-01",
@@ -10747,7 +10816,7 @@ const DATA_LOGISTICS={
       "tracking_number": "fb1c0ea32e7d2c11819925b2",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2025-11-04",
@@ -10758,7 +10827,7 @@ const DATA_LOGISTICS={
       "tracking_number": "144ad9df957665a2b82db084",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-11-06",
@@ -10769,7 +10838,7 @@ const DATA_LOGISTICS={
       "tracking_number": "a2e84914d2e3313f0d54f33b",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "estimated_delivery": "2025-11-12",
@@ -10780,7 +10849,7 @@ const DATA_LOGISTICS={
       "tracking_number": "9aa8b63548ddb84b59c1a5f2",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-11-13",
@@ -10791,7 +10860,7 @@ const DATA_LOGISTICS={
       "tracking_number": "5b9bf062dc9a452ea4735ee4",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2025-11-19",
@@ -10802,7 +10871,7 @@ const DATA_LOGISTICS={
       "tracking_number": "71cffbfe809aa532b12205c2",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-11-22",
@@ -10813,7 +10882,7 @@ const DATA_LOGISTICS={
       "tracking_number": "d728a52df39517eeb8991ea7",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Knoxville Logistics Hub, 900 Middlebrook Pike, Knoxville, TN 37921",
       "estimated_delivery": "2025-11-26",
@@ -10824,7 +10893,7 @@ const DATA_LOGISTICS={
       "tracking_number": "119c6e054352c733fe1ac13c",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Knoxville Logistics Hub, 900 Middlebrook Pike, Knoxville, TN 37921",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-11-29",
@@ -10835,7 +10904,7 @@ const DATA_LOGISTICS={
       "tracking_number": "4c70778340aa0633ed2abd63",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "estimated_delivery": "2025-12-01",
@@ -10846,7 +10915,7 @@ const DATA_LOGISTICS={
       "tracking_number": "c2558917b423b84b9baee960",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-12-03",
@@ -10857,7 +10926,7 @@ const DATA_LOGISTICS={
       "tracking_number": "e455d832188e72209eef9f1d",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2025-12-09",
@@ -10868,7 +10937,7 @@ const DATA_LOGISTICS={
       "tracking_number": "4e294ea4c68435949d29b2b7",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-12-11",
@@ -10879,7 +10948,7 @@ const DATA_LOGISTICS={
       "tracking_number": "3c70aaea0a177ae36ddadfba",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "estimated_delivery": "2025-12-15",
@@ -10890,7 +10959,7 @@ const DATA_LOGISTICS={
       "tracking_number": "1530fed25a5d38a50852cc78",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-12-17",
@@ -10901,7 +10970,7 @@ const DATA_LOGISTICS={
       "tracking_number": "75acd0312b80730acb495760",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "estimated_delivery": "2025-12-24",
@@ -10912,7 +10981,7 @@ const DATA_LOGISTICS={
       "tracking_number": "842995c23d40393269949ff8",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2025-12-27",
@@ -10923,7 +10992,7 @@ const DATA_LOGISTICS={
       "tracking_number": "ddb020fd2b41a43860b5c57f",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2025-12-30",
@@ -10934,7 +11003,7 @@ const DATA_LOGISTICS={
       "tracking_number": "07ae3aed3f0e5092881d136b",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-01-01",
@@ -10945,7 +11014,7 @@ const DATA_LOGISTICS={
       "tracking_number": "cc63f7446623291411839b06",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2026-01-07",
@@ -10956,7 +11025,7 @@ const DATA_LOGISTICS={
       "tracking_number": "ba4d2f1107d55d03156cf628",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-01-10",
@@ -10967,7 +11036,7 @@ const DATA_LOGISTICS={
       "tracking_number": "c21696dc6dcfe604715ea50b",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Knoxville Logistics Hub, 900 Middlebrook Pike, Knoxville, TN 37921",
       "estimated_delivery": "2026-01-13",
@@ -10978,7 +11047,7 @@ const DATA_LOGISTICS={
       "tracking_number": "730feec7307d6c7f167fe2dc",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Knoxville Logistics Hub, 900 Middlebrook Pike, Knoxville, TN 37921",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-01-14",
@@ -10989,7 +11058,7 @@ const DATA_LOGISTICS={
       "tracking_number": "2d03796b984d49838d69e92c",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "estimated_delivery": "2026-01-21",
@@ -11000,7 +11069,7 @@ const DATA_LOGISTICS={
       "tracking_number": "7823bfc67463b2460c4dedd5",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-01-24",
@@ -11011,7 +11080,7 @@ const DATA_LOGISTICS={
       "tracking_number": "8b390aa44a26d2b36e288278",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "estimated_delivery": "2026-01-26",
@@ -11022,7 +11091,7 @@ const DATA_LOGISTICS={
       "tracking_number": "db3b947998154d51df5120f8",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-01-28",
@@ -11033,7 +11102,7 @@ const DATA_LOGISTICS={
       "tracking_number": "20ed719d6ee974de25fb3be7",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Hartford Freight Depot, 50 Leibert Rd, Hartford, CT 06120",
       "estimated_delivery": "2026-02-03",
@@ -11044,7 +11113,7 @@ const DATA_LOGISTICS={
       "tracking_number": "d6157b53030e4736bb19ee55",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Hartford Freight Depot, 50 Leibert Rd, Hartford, CT 06120",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-02-04",
@@ -11055,7 +11124,7 @@ const DATA_LOGISTICS={
       "tracking_number": "c9c08ee607023a8b94fd37a3",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Hartford Freight Depot, 50 Leibert Rd, Hartford, CT 06120",
       "estimated_delivery": "2026-02-10",
@@ -11066,7 +11135,7 @@ const DATA_LOGISTICS={
       "tracking_number": "e7318951197bb2a1dd3dd755",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Hartford Freight Depot, 50 Leibert Rd, Hartford, CT 06120",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-02-11",
@@ -11077,7 +11146,7 @@ const DATA_LOGISTICS={
       "tracking_number": "a60f3d96c2e7f52dcdb0035f",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2026-02-18",
@@ -11088,7 +11157,7 @@ const DATA_LOGISTICS={
       "tracking_number": "0d57b1d0bedb75cb1f4529a0",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-02-21",
@@ -11099,7 +11168,7 @@ const DATA_LOGISTICS={
       "tracking_number": "53d64cc678a4f6e646c20a68",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "estimated_delivery": "2026-02-25",
@@ -11110,7 +11179,7 @@ const DATA_LOGISTICS={
       "tracking_number": "1414790e482c9605f6d8bfed",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-02-28",
@@ -11121,7 +11190,7 @@ const DATA_LOGISTICS={
       "tracking_number": "2b188becd37b65626cc1f302",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2026-03-03",
@@ -11132,7 +11201,7 @@ const DATA_LOGISTICS={
       "tracking_number": "dab6c996a13e277dae062182",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-03-05",
@@ -11143,7 +11212,7 @@ const DATA_LOGISTICS={
       "tracking_number": "31af73219c28c9926fd4df4d",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "estimated_delivery": "2026-03-09",
@@ -11154,7 +11223,7 @@ const DATA_LOGISTICS={
       "tracking_number": "73025cae99e75382c3025ccf",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Charlotte Freight Center, 2400 Westinghouse Blvd, Charlotte, NC 28273",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-03-11",
@@ -11165,7 +11234,7 @@ const DATA_LOGISTICS={
       "tracking_number": "029a3a99e8efb2e205b87c46",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "estimated_delivery": "2026-03-18",
@@ -11176,7 +11245,7 @@ const DATA_LOGISTICS={
       "tracking_number": "cb5a4317a59532df56efc536",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-03-21",
@@ -11187,7 +11256,7 @@ const DATA_LOGISTICS={
       "tracking_number": "a426abfbc0df65a1fdbb19ce",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "estimated_delivery": "2026-03-25",
@@ -11198,7 +11267,7 @@ const DATA_LOGISTICS={
       "tracking_number": "7248603a8ef939ab284802a0",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Portland Terminal, 100 Thompsons Point Rd, Portland, ME 04102",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-03-26",
@@ -11209,7 +11278,7 @@ const DATA_LOGISTICS={
       "tracking_number": "edb8066d0129f5486297a018",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "4510 Commerce Road, Richmond, VA 23234",
       "destination": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "estimated_delivery": "2026-03-31",
@@ -11220,7 +11289,7 @@ const DATA_LOGISTICS={
       "tracking_number": "b34d83732482d9595925a663",
       "user_id": "53eb603a9096854c3feb2b93",
       "carrier": "Mid-Atlantic Freight Services",
-      "status": "delivered",
+      "status": "Delivered",
       "origin": "Boston Terminal, 100 Terminal St, Boston, MA 02210",
       "destination": "4510 Commerce Road, Richmond, VA 23234",
       "estimated_delivery": "2026-04-02",
@@ -33147,7 +33216,7 @@ const DATA_SONOS={
       "now_playing_source": null,
       "now_playing_duration_seconds": null,
       "now_playing_position_seconds": null,
-      "queue_position": null
+      "queue_position": 0
     },
     {
       "speaker_id": "42890127a7a0a38c3d0c20f2",
@@ -33166,7 +33235,7 @@ const DATA_SONOS={
       "now_playing_source": null,
       "now_playing_duration_seconds": null,
       "now_playing_position_seconds": null,
-      "queue_position": null
+      "queue_position": 0
     }
   ],
   "speaker_groups": [
@@ -34227,7 +34296,8 @@ const DATA_TICKETMASTER={
       "capacity": 1500,
       "venue_type": "Concert Hall",
       "address": "708 E Broad St",
-      "zip": "23219"
+      "zip": "23219",
+      "type": "theater"
     },
     {
       "id": "venue_002",
@@ -34237,7 +34307,8 @@ const DATA_TICKETMASTER={
       "capacity": 300,
       "venue_type": "Bar/Club",
       "address": "1621 W Broad St",
-      "zip": "23220"
+      "zip": "23220",
+      "type": "club"
     },
     {
       "id": "venue_003",
@@ -34247,7 +34318,8 @@ const DATA_TICKETMASTER={
       "capacity": 5000,
       "venue_type": "Outdoor Amphitheater",
       "address": "Brown's Island",
-      "zip": "23219"
+      "zip": "23219",
+      "type": "outdoor"
     },
     {
       "id": "venue_004",
@@ -34257,7 +34329,8 @@ const DATA_TICKETMASTER={
       "capacity": 400,
       "venue_type": "Brewery/Event Space",
       "address": "2410 Ownby Ln",
-      "zip": "23220"
+      "zip": "23220",
+      "type": "outdoor"
     }
   ],
   "attractions": [
@@ -34626,7 +34699,7 @@ const DATA_ZILLOW={
       "lot_size": 6534,
       "year_built": 1998,
       "home_type": "Single Family",
-      "property_status": "for_sale",
+      "property_status": "For Sale",
       "days_on_zillow": 75,
       "views": 612,
       "saves": 24,
@@ -34659,7 +34732,7 @@ const DATA_ZILLOW={
       "lot_size": 8276,
       "year_built": 2001,
       "home_type": "Single Family",
-      "property_status": "for_sale",
+      "property_status": "For Sale",
       "days_on_zillow": 50,
       "views": 387,
       "saves": 18,
@@ -34692,7 +34765,7 @@ const DATA_ZILLOW={
       "lot_size": 5890,
       "year_built": 1972,
       "home_type": "Single Family",
-      "property_status": "for_sale",
+      "property_status": "For Sale",
       "days_on_zillow": 90,
       "views": 298,
       "saves": 11,
@@ -34725,7 +34798,7 @@ const DATA_ZILLOW={
       "lot_size": 7100,
       "year_built": 1988,
       "home_type": "Single Family",
-      "property_status": "for_sale",
+      "property_status": "For Sale",
       "days_on_zillow": 38,
       "views": 445,
       "saves": 16,
@@ -34758,7 +34831,7 @@ const DATA_ZILLOW={
       "lot_size": 10200,
       "year_built": 2005,
       "home_type": "Single Family",
-      "property_status": "for_sale",
+      "property_status": "For Sale",
       "days_on_zillow": 28,
       "views": 534,
       "saves": 22,
@@ -34791,7 +34864,7 @@ const DATA_ZILLOW={
       "lot_size": 4800,
       "year_built": 1965,
       "home_type": "Single Family",
-      "property_status": "for_sale",
+      "property_status": "For Sale",
       "days_on_zillow": 140,
       "views": 189,
       "saves": 7,
@@ -34824,7 +34897,7 @@ const DATA_ZILLOW={
       "lot_size": 6200,
       "year_built": 1994,
       "home_type": "Single Family",
-      "property_status": "for_sale",
+      "property_status": "For Sale",
       "days_on_zillow": 33,
       "views": 472,
       "saves": 19,
@@ -34857,7 +34930,7 @@ const DATA_ZILLOW={
       "lot_size": 9400,
       "year_built": 1996,
       "home_type": "Single Family",
-      "property_status": "for_sale",
+      "property_status": "For Sale",
       "days_on_zillow": 24,
       "views": 341,
       "saves": 14,
@@ -35077,7 +35150,7 @@ renderers.overview=function(){
     {icon:'💸',title:'Crypto vs Hardship',desc:'$3,800 invested in crypto ($2,700 lost) while claiming he can\'t afford $225 for soccer registration.'},
     {icon:'🚛',title:'Custody Erosion',desc:'Extended routes overlap custody weekends. Logistics tracking shows him on I-95 when he should be picking up Emma.'},
     {icon:'👵',title:'Shadow Caretaker',desc:'Corinne watches Emma 2-3x/month during custody time. Denise doesn\'t know. Custody agreement requires disclosure.'},
-    {icon:'🏠',title:'Hidden House Hunt',desc:'Zillow searches, mortgage pre-approval, open houses — all while claiming financial hardship to Denise.'},
+    {icon:'🏠',title:'Hidden House Hunt',desc:'Zillow searches, mortgage pre-approval, open houses \u2014 all while claiming financial hardship to Denise.'},
     {icon:'🍷',title:'Lifestyle vs Hardship',desc:'$80-120 dinner parties, concerts, brewery visits. Instacart + Sonos + email paint a comfortable life.'},
   ];
   const npcs=[
@@ -35098,11 +35171,25 @@ renderers.overview=function(){
   h+='<h2 style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin:20px 0 12px">Key NPCs</h2>';
   for(const n of npcs){
     const color=n.danger==='high'?'var(--red)':n.danger==='medium'?'var(--yellow)':'var(--green)';
-    h+='<div class="card" style="border-left:3px solid '+color+'"><div style="display:flex;justify-content:space-between;align-items:center"><div><span style="font-weight:700">'+n.name+'</span> <span style="color:var(--text-dim);font-size:12px">— '+n.role+'</span></div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.05);color:'+color+'">'+n.danger.toUpperCase()+' RISK</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">'+n.desc+'</div></div>';
+    h+='<div class="card" style="border-left:3px solid '+color+'"><div style="display:flex;justify-content:space-between;align-items:center"><div><span style="font-weight:700">'+n.name+'</span> <span style="color:var(--text-dim);font-size:12px">\u2014 '+n.role+'</span></div><span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.05);color:'+color+'">'+n.danger.toUpperCase()+' RISK</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">'+n.desc+'</div></div>';
   }
   h+='<h2 style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin:20px 0 12px">Server Stack</h2>';
   h+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">';
-  const servers=[{e:'📧',n:'Email',c:DATA_EMAIL.emails?.length||0},{e:'💬',n:'Messaging',c:DATA_MESSAGING.conversations?.length||0},{e:'💰',n:'FinTrack',c:DATA_FINTRACK.transactions?.length||0},{e:'📅',n:'Calendar',c:DATA_CALENDAR.events?.length||0},{e:'🚛',n:'Logistics',c:DATA_LOGISTICS.shipments?.length||0},{e:'❤️',n:'Fitbit',c:DATA_FITBIT.daily_summaries?.length||0},{e:'🏃',n:'Strava',c:DATA_STRAVA.activities?.length||0},{e:'👤',n:'Contacts',c:DATA_CONTACTS.contacts?.length||0},{e:'🛒',n:'Instacart',c:DATA_INSTACART.orders?.length||0},{e:'🔊',n:'Sonos',c:DATA_SONOS.favorite_tracks?.length||0},{e:'⏰',n:'Reminders',c:DATA_REMINDER.reminders?.length||0},{e:'🎫',n:'Ticketmaster',c:DATA_TICKETMASTER.events?.length||0},{e:'🏠',n:'Zillow',c:DATA_ZILLOW.properties?.length||0}];
+  const servers=[
+    {e:'📧',n:'Email',c:DATA_EMAIL.emails?.length||0},
+    {e:'💬',n:'Messaging',c:DATA_MESSAGING.conversations?.length||0},
+    {e:'💰',n:'FinTrack',c:DATA_FINTRACK.transactions?.length||0},
+    {e:'📅',n:'Calendar',c:DATA_CALENDAR.events?.length||0},
+    {e:'🚛',n:'Logistics',c:DATA_LOGISTICS.shipments?.length||0},
+    {e:'❤️',n:'Fitbit',c:DATA_FITBIT.daily_summaries?.length||0},
+    {e:'🏃',n:'Strava',c:DATA_STRAVA.activities?.length||0},
+    {e:'👤',n:'Contacts',c:DATA_CONTACTS.contacts?.length||0},
+    {e:'🛒',n:'Instacart',c:DATA_INSTACART.orders?.length||0},
+    {e:'🔊',n:'Sonos',c:DATA_SONOS.favorite_tracks?.length||0},
+    {e:'⏰',n:'Reminders',c:DATA_REMINDER.reminders?.length||0},
+    {e:'🎫',n:'Ticketmaster',c:DATA_TICKETMASTER.events?.length||0},
+    {e:'🏠',n:'Zillow',c:DATA_ZILLOW.properties?.length||0}
+  ];
   for(const s of servers){
     h+='<div class="card" style="padding:10px;display:flex;align-items:center;gap:8px;font-size:13px"><span style="font-size:16px">'+s.e+'</span><span style="font-weight:600">'+s.n+'</span><span style="margin-left:auto;color:var(--text-dim);font-size:11px">'+s.c+'</span></div>';
   }
@@ -35136,10 +35223,17 @@ renderers.email=function(){
     allInThread.forEach(e=>{
       const ms=tsToMs(e.timestamp);
       const from=e.sender||'';
+      const to=(e.recipients||e.recipients_json||[]);
+      const cc=(e.cc||e.cc_json||[]);
+      const att=e.attachments||e.attachments_json||{};
+      const attList=Array.isArray(att)?att:typeof att==='object'?Object.keys(att).filter(k=>att[k]):[];
       const preview=(e.content||'').substring(0,120).replace(/\n/g,' ');
-      h+='<div class="email-item" onclick="this.classList.toggle(\x27open\x27)" data-search="'+(e.subject+' '+e.sender+' '+(e.content||'')).toLowerCase().replace(/"/g,"&quot;").substring(0,500)+'">';
+      h+='<div class="email-item" onclick="this.classList.toggle(\'open\')" data-search="'+(e.subject+' '+e.sender+' '+(e.content||'')).toLowerCase().replace(/"/g,'&quot;').substring(0,500)+'">';
       h+='<div class="email-meta"><span class="email-from">'+esc(from)+'</span><span class="email-date">'+fmtDateTime(ms)+'</span></div>';
       h+='<div class="email-subj">'+esc(e.subject||'(no subject)')+'</div>';
+      if(Array.isArray(to)&&to.length)h+='<div class="email-detail">To: '+esc(to.join(', '))+'</div>';
+      if(Array.isArray(cc)&&cc.length)h+='<div class="email-detail">Cc: '+esc(cc.join(', '))+'</div>';
+      if(attList.length)h+='<div class="email-detail">📎 '+esc(attList.join(', '))+'</div>';
       h+='<div class="email-preview">'+esc(preview)+'</div>';
       h+='<div class="email-body">'+esc(e.content||'')+'</div>';
       h+='</div>';
@@ -35161,7 +35255,12 @@ renderers.email=function(){
 renderers.messaging=function(){
   if(rendered.messaging)return;rendered.messaging=true;
   const el=document.getElementById('section-messaging');
-  const convos=DATA_MESSAGING.conversations||[];
+  const convos=(DATA_MESSAGING.conversations||[]).slice().sort((a,b)=>{
+    const lastA=(a.messages||[]).length?tsToMs(a.messages[a.messages.length-1].timestamp):0;
+    const lastB=(b.messages||[]).length?tsToMs(b.messages[b.messages.length-1].timestamp):0;
+    return lastB-lastA;
+  });
+  const currentUser=DATA_MESSAGING.current_user_id||'p_matthew';
   let h='<h1>Messaging</h1><p class="subtitle">'+convos.length+' conversations</p>';
   h+='<div id="msg-container"><div id="msg-convos">';
   convos.forEach((c,i)=>{
@@ -35180,24 +35279,26 @@ renderers.messaging=function(){
     const c=convos[idx];if(!c)return;
     document.getElementById('msg-chat-header').textContent=c.title||'Chat';
     const body=document.getElementById('msg-chat-body');
-    const msgs=c.messages||[];
+    const msgs=(c.messages||[]).slice().sort((a,b)=>tsToMs(a.timestamp)-tsToMs(b.timestamp));
+    const participants=c.participant_ids||(msgs.map(x=>x.sender_id).filter((v,i,a)=>a.indexOf(v)===i));
+    const isGroup=participants.length>2;
     let mh='';let lastDate='';
     msgs.forEach(m=>{
       const ms=tsToMs(m.timestamp);
       const d=fmtDate(ms);
       if(d!==lastDate){mh+='<div class="msg-date-sep">'+d+'</div>';lastDate=d;}
-      const isSent=m.sender_id==='p_matthew';
-      const senderName=(m.sender_id||'').replace(/^p_/,'').replace(/^\w/,c=>c.toUpperCase());
-      const isGroup=(c.participant_ids||c.messages.map(x=>x.sender_id).filter((v,i,a)=>a.indexOf(v)===i)).length>2;
+      const isSent=m.sender_id===currentUser;
+      const senderName=(m.sender_id||'').replace(/^p_/,'').replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
       mh+='<div class="msg-bubble '+(isSent?'sent':'received')+'">';
-      if(!isSent&&isGroup)mh+='<div style="font-size:10px;font-weight:600;color:var(--accent);margin-bottom:2px">'+esc(senderName)+'</div>';
+      if(!isSent&&isGroup)mh+='<div class="msg-sender-label">'+esc(senderName)+'</div>';
       mh+=esc(m.content||'');
+      if(m.attachment_name)mh+='<div style="margin-top:4px;font-size:11px;color:var(--yellow)">📎 '+esc(m.attachment_name)+'</div>';
       mh+='<div class="msg-time">'+fmtTime(ms)+'</div></div>';
     });
     body.innerHTML=mh;
     body.scrollTop=body.scrollHeight;
   }
-  renderConvo(0);
+  if(convos.length)renderConvo(0);
   document.querySelectorAll('#msg-convos .convo-item').forEach(item=>{
     item.addEventListener('click',function(){
       document.querySelectorAll('#msg-convos .convo-item').forEach(i=>i.classList.remove('active'));
@@ -35214,11 +35315,13 @@ renderers.fintrack=function(){
   const accounts=DATA_FINTRACK.accounts||[];
   const txns=(DATA_FINTRACK.transactions||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
   const subs=DATA_FINTRACK.subscriptions||[];
-  const acctMap={'4821':'Checking ••4821','7953':'Savings ••7953','3156':'Credit Card ••3156','6089':'401(k) ••6089'};
   let h='<h1>FinTrack</h1><p class="subtitle">'+txns.length+' transactions across '+accounts.length+' accounts</p>';
   h+='<div class="fin-tabs"><div class="fin-tab active" data-acct="all">All Accounts</div>';
   accounts.forEach(a=>{
-    h+='<div class="fin-tab" data-acct="'+a.last_four+'">'+esc(a.account_type)+' ••'+a.last_four+'</div>';
+    const st=(a.status||'').toLowerCase();
+    if(st==='active'){
+      h+='<div class="fin-tab" data-acct="'+a.last_four+'">'+esc(a.account_type)+' ••'+a.last_four+'</div>';
+    }
   });
   h+='</div>';
   h+='<div class="fin-summary">';
@@ -35240,9 +35343,12 @@ renderers.fintrack=function(){
   if(subs.length){
     h+='<h2 style="margin-top:20px;font-size:16px">Subscriptions</h2>';
     subs.forEach(s=>{
-      h+='<div class="txn-row"><div><div class="txn-merchant">'+esc(s.service_name)+'</div>';
-      h+='<div class="txn-cat">'+s.billing_frequency+' — next: '+s.next_billing_date+'</div></div>';
-      h+='<div class="txn-amt neg">'+fmtMoney(-s.amount)+'</div></div>';
+      const st=(s.status||'').toLowerCase();
+      if(st==='active'){
+        h+='<div class="txn-row"><div><div class="txn-merchant">'+esc(s.service_name)+'</div>';
+        h+='<div class="txn-cat">'+s.billing_frequency+' — next: '+s.next_billing_date+'</div></div>';
+        h+='<div class="txn-amt neg">'+fmtMoney(-s.amount)+'</div></div>';
+      }
     });
   }
   el.innerHTML=h;
@@ -35287,8 +35393,7 @@ renderers.calendar=function(){
       h+='<div class="cal-day"><div class="day-num">'+d+'</div>';
       dayEvts.forEach(e=>{
         const tag=e.tag||'personal';
-        const eid=e.event_id||Math.random();
-        h+='<div class="cal-evt '+tag+'" onclick="event.stopPropagation();showCalModal(\''+eid+'\')">'+esc(e.title)+'</div>';
+        h+='<div class="cal-evt '+tag+'" onclick="event.stopPropagation();showCalModal(&quot;'+esc(e.event_id)+'&quot;)">'+esc(e.title)+'</div>';
       });
       h+='</div>';
     }
@@ -35298,14 +35403,17 @@ renderers.calendar=function(){
   window.calPrev=function(){curMonth--;if(curMonth<0){curMonth=11;curYear--;}render();};
   window.calNext=function(){curMonth++;if(curMonth>11){curMonth=0;curYear++;}render();};
   window.showCalModal=function(eid){
-    const e=events.find(ev=>ev.event_id===eid);
+    const e=events.find(ev=>String(ev.event_id)===String(eid));
     if(!e)return;
     const tag=e.tag||'personal';
     const tagColors={work:'var(--accent)',personal:'var(--purple)',health:'var(--green)'};
     let modal=document.getElementById('cal-modal');
     if(!modal){modal=document.createElement('div');modal.id='cal-modal';modal.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:1000';modal.addEventListener('click',function(ev){if(ev.target===modal)modal.style.display='none';});document.body.appendChild(modal);}
     let attendees='';
-    try{const a=JSON.parse(e.attendees||'[]');attendees=a.join(', ');}catch(ex){attendees=e.attendees||'';}
+    try{
+      const a=typeof e.attendees==='string'?JSON.parse(e.attendees):Array.isArray(e.attendees)?e.attendees:[];
+      attendees=a.join(', ');
+    }catch(ex){attendees=String(e.attendees||'');}
     modal.innerHTML='<div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;max-width:450px;width:90%;border-top:3px solid '+(tagColors[tag]||'var(--accent)')+'"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><h3 style="font-size:16px;margin:0">'+esc(e.title)+'</h3><span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,0.08);color:'+(tagColors[tag]||'var(--accent)')+'">'+tag.toUpperCase()+'</span></div>'
     +'<div style="font-size:13px;color:var(--text-dim);display:grid;grid-template-columns:80px 1fr;gap:6px 12px">'
     +'<span style="color:var(--text-muted)">When</span><span>'+fmtDateTime(tsToMs(e.start_datetime))+(e.end_datetime?' — '+fmtTime(tsToMs(e.end_datetime)):'')+'</span>'
@@ -35326,21 +35434,23 @@ renderers.logistics=function(){
   const trackingEvents=DATA_LOGISTICS.tracking_events||[];
   const evtMap={};
   trackingEvents.forEach(e=>{
-    if(!evtMap[e.tracking_number])evtMap[e.tracking_number]=[];
-    evtMap[e.tracking_number].push(e);
+    const tn=String(e.tracking_number);
+    if(!evtMap[tn])evtMap[tn]=[];
+    evtMap[tn].push(e);
   });
-  // Pair outbound+return by tracking_number prefix pattern
   const paired=[];const used=new Set();
   shipments.sort((a,b)=>new Date(a.created_at)-new Date(b.created_at));
   for(let i=0;i<shipments.length;i++){
-    if(used.has(shipments[i].tracking_number))continue;
+    const tn=String(shipments[i].tracking_number);
+    if(used.has(tn))continue;
     const out=shipments[i];
-    used.add(out.tracking_number);
+    used.add(tn);
     let ret=null;
     for(let j=i+1;j<shipments.length;j++){
-      if(used.has(shipments[j].tracking_number))continue;
+      const tn2=String(shipments[j].tracking_number);
+      if(used.has(tn2))continue;
       if(shipments[j].origin===out.destination&&shipments[j].destination===out.origin){
-        ret=shipments[j];used.add(ret.tracking_number);break;
+        ret=shipments[j];used.add(tn2);break;
       }
     }
     paired.push({outbound:out,returnLeg:ret});
@@ -35349,10 +35459,10 @@ renderers.logistics=function(){
   paired.forEach((p,idx)=>{
     const o=p.outbound;const r=p.returnLeg;
     const dest=o.destination.split(',')[0];
-    const statusClass=(o.status||'').replace(/ /g,'_');
-    h+='<div class="route-card" onclick="event.target.closest(\x27.route-timeline\x27)?null:this.classList.toggle(\x27open\x27)">';
+    const statusNorm=(o.status||'').toLowerCase().replace(/ /g,'_');
+    h+='<div class="route-card" onclick="if(!event.target.closest(\'.route-timeline\'))this.classList.toggle(\'open\')">';
     h+='<div class="route-header"><div class="route-title">'+esc(dest)+'</div>';
-    h+='<div class="route-status '+statusClass+'">'+esc(o.status)+'</div></div>';
+    h+='<div class="route-status '+statusNorm+'">'+esc(o.status)+'</div></div>';
     h+='<div class="route-details">';
     h+='<div><div class="label">Outbound</div>'+esc(o.origin.split(',')[0])+' → '+esc(dest)+'</div>';
     h+='<div><div class="label">Depart</div>'+(o.created_at?fmtDateTime(new Date(o.created_at).getTime()):'')+'</div>';
@@ -35361,9 +35471,8 @@ renderers.logistics=function(){
       h+='<div><div class="label">Est. Return</div>'+(r.estimated_delivery||'')+'</div>';
     }
     h+='</div>';
-    // Timeline
-    const oEvts=(evtMap[o.tracking_number]||[]).slice().sort((a,b)=>new Date(a.timestamp)-new Date(b.timestamp));
-    const rEvts=r?(evtMap[r.tracking_number]||[]).slice().sort((a,b)=>new Date(a.timestamp)-new Date(b.timestamp)):[];
+    const oEvts=(evtMap[String(o.tracking_number)]||[]).slice().sort((a,b)=>new Date(a.timestamp)-new Date(b.timestamp));
+    const rEvts=r?(evtMap[String(r.tracking_number)]||[]).slice().sort((a,b)=>new Date(a.timestamp)-new Date(b.timestamp)):[];
     if(oEvts.length||rEvts.length){
       h+='<div class="route-timeline">';
       if(oEvts.length){
@@ -35393,14 +35502,14 @@ renderers.logistics=function(){
 renderers.fitbit=function(){
   if(rendered.fitbit)return;rendered.fitbit=true;
   const el=document.getElementById('section-fitbit');
-  const daily=(DATA_FITBIT.daily_summaries||DATA_FITBIT.daily_activity_summary||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const daily=(DATA_FITBIT.daily_summaries||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
   const sleep=(DATA_FITBIT.sleep_logs||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
-  const food=DATA_FITBIT.food_logs||[];
+  const food=(DATA_FITBIT.food_logs||[]).slice();
   const totalSteps=daily.reduce((s,d)=>s+(d.steps||0),0);
   const avgSteps=daily.length?Math.round(totalSteps/daily.length):0;
   const hrData=daily.filter(d=>d.resting_heart_rate);
   const avgHR=hrData.length?Math.round(hrData.reduce((s,d)=>s+(d.resting_heart_rate||0),0)/hrData.length):0;
-  const avgSleep=sleep.length?(sleep.reduce((s,d)=>s+(d.minutes_asleep||d.duration||0),0)/sleep.length/60).toFixed(1):0;
+  const avgSleep=sleep.length?(sleep.reduce((s,d)=>s+(d.minutes_asleep||0),0)/sleep.length/60).toFixed(1):0;
   let h='<h1>Fitbit</h1><p class="subtitle">'+daily.length+' days tracked</p>';
   h+='<div class="fitbit-grid">';
   h+='<div class="fitbit-stat"><div class="fs-label">Avg Steps</div><div class="fs-val">'+avgSteps.toLocaleString()+'</div><div class="fs-sub">per day</div></div>';
@@ -35412,34 +35521,43 @@ renderers.fitbit=function(){
     h+='<div class="fitbit-stat"><div class="fs-label">Weight / BMI</div><div class="fs-val" style="color:var(--red)">'+wt+' lbs</div><div class="fs-sub">BMI ~32</div></div>';
   }
   h+='</div>';
-  // Daily log (paginated)
   const PAGE_SIZE=20;
   h+='<h2 style="font-size:16px;margin:16px 0 8px">Daily Activity</h2>';
   h+='<div id="fitbit-daily">';
-  daily.slice(0,PAGE_SIZE).forEach(d=>{
+  function renderFitbitDay(d){
     const hr=d.resting_heart_rate||'—';
-    const cal=d.calories_total&&d.calories_bmr?Math.round(d.calories_total-d.calories_bmr):d.calories_total||'—';
+    const cal=(d.calories_total!=null&&d.calories_bmr!=null)?Math.round(d.calories_total-d.calories_bmr):(d.calories_total||'—');
     const sleepD=sleep.find(s=>s.date===d.date);
     const sleepHrs=sleepD?((sleepD.minutes_asleep||0)/60).toFixed(1):'—';
     const score=sleepD?(sleepD.efficiency||'—'):'—';
-    h+='<div class="fitbit-day"><div class="fd-date">'+d.date+'</div>';
-    h+='<div class="fd-row"><span>🚶 '+(d.steps||0).toLocaleString()+' steps</span>';
-    h+='<span>❤️ '+hr+' bpm</span>';
-    h+='<span>🔥 '+cal+' cal</span>';
-    h+='<span>😴 '+sleepHrs+' hrs (score: '+score+')</span>';
-    h+='<span>📏 '+(d.distances&&d.distances.length?d.distances[0].distance:0)+' mi</span></div></div>';
-  });
+    const dist=d.distance_km?(d.distance_km*0.621371).toFixed(1):'0';
+    let row='<div class="fitbit-day"><div class="fd-date">'+d.date+'</div>';
+    row+='<div class="fd-row"><span>🚶 '+(d.steps||0).toLocaleString()+' steps</span>';
+    row+='<span>❤️ '+hr+' bpm</span>';
+    row+='<span>🔥 '+cal+' active cal</span>';
+    row+='<span>😴 '+sleepHrs+' hrs (score: '+score+')</span>';
+    row+='<span>📏 '+dist+' mi</span></div></div>';
+    return row;
+  }
+  daily.slice(0,PAGE_SIZE).forEach(d=>{h+=renderFitbitDay(d);});
   h+='</div>';
   if(daily.length>PAGE_SIZE){
     h+='<div class="pagination"><button onclick="fitbitMore()">Load More ('+daily.length+' total)</button></div>';
   }
   if(food.length){
+    const foodByDate={};
+    food.forEach(f=>{
+      if(!foodByDate[f.date])foodByDate[f.date]=[];
+      foodByDate[f.date].push(f);
+    });
+    const dates=Object.keys(foodByDate).sort().reverse();
     h+='<h2 style="font-size:16px;margin:16px 0 8px">Food Logs</h2>';
-    food.slice(0,20).forEach(f=>{
-      h+='<div class="food-log"><div class="fl-date">'+(f.date||'')+'</div>';
+    dates.slice(0,20).forEach(dt=>{
+      const items=foodByDate[dt];
+      h+='<div class="food-log"><div class="fl-date">'+dt+'</div>';
       h+='<div class="fl-items">';
-      (f.foods||[]).forEach(item=>{
-        h+=esc(item.log_food_name||item.loggedFood?.name||'Food')+' — '+(item.calories||item.nutritionalValues?.calories||'?')+' cal<br>';
+      items.forEach(item=>{
+        h+=esc(item.food_name||'Food')+' ('+esc(item.meal_type||'')+') — '+(item.calories||'?')+' cal<br>';
       });
       h+='</div></div>';
     });
@@ -35448,19 +35566,18 @@ renderers.fitbit=function(){
   let fitbitPage=1;
   window.fitbitMore=function(){
     fitbitPage++;
-    const start=fitbitPage*PAGE_SIZE;
+    const start=(fitbitPage-1)*PAGE_SIZE;
     const end=start+PAGE_SIZE;
     const container=document.getElementById('fitbit-daily');
-    daily.slice(start-PAGE_SIZE,end).forEach(d=>{
-      const hr=d.resting_heart_rate||d.restingHeartRate||'—';
-      const cal=d.calories_out||d.caloriesOut||'—';
-      const sleepD=sleep.find(s=>(s.date_of_sleep||s.dateOfSleep)===d.date);
-      const sleepHrs=sleepD?((sleepD.duration||0)/3600000).toFixed(1):'—';
-      const score=sleepD?(sleepD.efficiency||'—'):'—';
-      const div=document.createElement('div');div.className='fitbit-day';
-      div.innerHTML='<div class="fd-date">'+d.date+'</div><div class="fd-row"><span>🚶 '+(d.steps||0).toLocaleString()+' steps</span><span>❤️ '+hr+' bpm</span><span>🔥 '+cal+' cal</span><span>😴 '+sleepHrs+' hrs (score: '+score+')</span></div>';
-      container.appendChild(div);
+    daily.slice(start,end).forEach(d=>{
+      const div=document.createElement('div');
+      div.innerHTML=renderFitbitDay(d);
+      container.appendChild(div.firstChild);
     });
+    if(end>=daily.length){
+      const btn=document.querySelector('.pagination button');
+      if(btn){btn.disabled=true;btn.textContent='All loaded';}
+    }
   };
 };
 
@@ -35492,12 +35609,13 @@ renderers.contacts=function(){
   contacts.forEach(c=>{
     const initials=((c.first_name||'')[0]||'')+((c.last_name||'')[0]||'');
     h+='<div class="contact-card"><div class="contact-avatar">'+esc(initials)+'</div><div class="contact-info">';
-    h+='<div class="contact-name">'+esc((c.first_name||'')+' '+(c.last_name||''))+'</div>';
+    h+='<div class="contact-name">'+esc((c.first_name||'')+' '+(c.last_name||''))+(c.is_user?' <span style="font-size:10px;background:var(--accent);color:#fff;padding:1px 6px;border-radius:4px;margin-left:6px">YOU</span>':'')+'</div>';
     if(c.job)h+='<div class="contact-detail">'+esc(c.job)+'</div>';
     if(c.description)h+='<div class="contact-detail">'+esc(c.description)+'</div>';
     if(c.phone)h+='<div class="contact-detail">📞 '+esc(c.phone)+'</div>';
     if(c.email)h+='<div class="contact-detail">✉️ '+esc(c.email)+'</div>';
     if(c.address)h+='<div class="contact-detail">📍 '+esc(c.address)+'</div>';
+    if(c.city_living)h+='<div class="contact-detail">'+esc(c.city_living)+(c.country?', '+esc(c.country):'')+'</div>';
     h+='</div></div>';
   });
   el.innerHTML=h;
@@ -35510,19 +35628,21 @@ renderers.instacart=function(){
   const orders=(DATA_INSTACART.orders||[]).slice().sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
   const items=DATA_INSTACART.order_items||[];
   const products=DATA_INSTACART.products||[];
-  const prodMap={};products.forEach(p=>{prodMap[p.id]=p;});
+  const prodMap={};products.forEach(p=>{prodMap[String(p.id)]=p;});
   const itemsByOrder={};items.forEach(i=>{
-    if(!itemsByOrder[i.order_id])itemsByOrder[i.order_id]=[];
-    itemsByOrder[i.order_id].push(i);
+    const oid=String(i.order_id);
+    if(!itemsByOrder[oid])itemsByOrder[oid]=[];
+    itemsByOrder[oid].push(i);
   });
   let h='<h1>Instacart</h1><p class="subtitle">'+orders.length+' orders</p>';
   orders.forEach(o=>{
-    const oi=itemsByOrder[o.id]||[];
-    h+='<div class="order-card"><div class="order-date">'+(o.delivery_date||'')+' — '+esc(o.status)+'</div>';
+    const oid=String(o.id);
+    const oi=itemsByOrder[oid]||[];
+    h+='<div class="order-card"><div class="order-date">'+(o.delivery_date||o.created_at||'')+' — '+esc(o.status)+'</div>';
     h+='<div class="order-total">$'+((o.total||0).toFixed(2))+'</div>';
     h+='<div class="order-items">';
     oi.forEach(item=>{
-      const prod=prodMap[item.product_id];
+      const prod=prodMap[String(item.product_id)];
       const name=prod?prod.name:item.product_id;
       h+=esc(name)+' × '+item.quantity+' — $'+(item.price_at_purchase*item.quantity).toFixed(2)+'<br>';
     });
@@ -35546,7 +35666,8 @@ renderers.sonos=function(){
   });
   h+='<h2 style="font-size:16px;margin:16px 0 8px">Playlists</h2>';
   favs.forEach(f=>{
-    const fTracks=tracks.filter(t=>t.favorite_id===f.favorite_id).sort((a,b)=>a.position-b.position);
+    const fid=f.favorite_id;
+    const fTracks=tracks.filter(t=>String(t.favorite_id)===String(fid)).sort((a,b)=>a.position-b.position);
     h+='<div class="playlist-card"><div class="pl-name">'+esc(f.title)+'</div>';
     h+='<div class="pl-source">'+esc(f.source)+' — '+fTracks.length+' tracks</div>';
     h+='<div class="pl-tracks">';
@@ -35584,12 +35705,12 @@ renderers.ticketmaster=function(){
   const orders=DATA_TICKETMASTER.orders||[];
   const venues=DATA_TICKETMASTER.venues||[];
   const attractions=DATA_TICKETMASTER.attractions||[];
-  const venueMap={};venues.forEach(v=>{venueMap[v.id]=v;});
-  const attrMap={};attractions.forEach(a=>{attrMap[a.id]=a;});
+  const venueMap={};venues.forEach(v=>{venueMap[String(v.id)]=v;});
+  const attrMap={};attractions.forEach(a=>{attrMap[String(a.id)]=a;});
   let h='<h1>Ticketmaster</h1><p class="subtitle">'+events.length+' events, '+orders.length+' orders</p>';
   events.forEach(e=>{
-    const venue=venueMap[e.venue_id]||{};
-    const order=orders.find(o=>o.event_id===e.id);
+    const venue=venueMap[String(e.venue_id)]||{};
+    const order=orders.find(o=>String(o.event_id)===String(e.id));
     h+='<div class="card"><div style="display:flex;justify-content:space-between">';
     h+='<div><div style="font-size:16px;font-weight:700">'+esc(e.name)+'</div>';
     h+='<div style="font-size:12px;color:var(--text-dim);margin-top:4px">'+esc(venue.name||'')+' — '+e.date+' at '+e.time+'</div>';
@@ -35610,14 +35731,15 @@ renderers.zillow=function(){
   const props=DATA_ZILLOW.properties||[];
   const saved=DATA_ZILLOW.saved_properties||[];
   const tours=DATA_ZILLOW.scheduled_tours||[];
-  const savedIds=new Set(saved.map(s=>s.property_id));
-  const savedNotes={};saved.forEach(s=>{savedNotes[s.property_id]=s.notes;});
-  const tourMap={};tours.forEach(t=>{tourMap[t.property_id]=t;});
+  const savedIds=new Set(saved.map(s=>String(s.property_id)));
+  const savedNotes={};saved.forEach(s=>{savedNotes[String(s.property_id)]=s.notes;});
+  const tourMap={};tours.forEach(t=>{tourMap[String(t.property_id)]=t;});
   let h='<h1>Zillow</h1><p class="subtitle">'+props.length+' properties, '+saved.length+' saved, '+tours.length+' tours</p>';
   props.forEach(p=>{
-    const isSaved=savedIds.has(p.id);
-    const note=savedNotes[p.id];
-    const tour=tourMap[p.id];
+    const pid=String(p.id);
+    const isSaved=savedIds.has(pid);
+    const note=savedNotes[pid];
+    const tour=tourMap[pid];
     h+='<div class="property-card'+(isSaved?' saved':'')+'">';
     h+='<div class="prop-price">$'+p.price.toLocaleString()+(isSaved?' ⭐':'')+'</div>';
     h+='<div class="prop-addr">'+esc(p.address)+', '+esc(p.city)+', '+esc(p.state)+' '+esc(p.zip_code)+'</div>';
@@ -35643,7 +35765,6 @@ function renderMd(text){
   h=h.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');
   h=h.replace(/^- (.+)$/gm,'<li>$1</li>');
   h=h.replace(/(<li>.*<\/li>)/s,function(m){return '<ul>'+m+'</ul>';});
-  // Tables
   h=h.replace(/^\|(.+)\|$/gm,function(line){
     const cells=line.split('|').filter(c=>c.trim());
     if(cells.every(c=>/^[-:]+$/.test(c.trim())))return '';
@@ -35672,9 +35793,6 @@ renderers.storylines=function(){
   document.getElementById('section-storylines').innerHTML='<h1>Storylines</h1>'+renderMd(DOC_STORYLINES);
 };
 
-function esc(s){return s==null?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-
-// Initial render
 renderers.overview();
 
 </script>
